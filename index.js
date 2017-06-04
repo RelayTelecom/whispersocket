@@ -3,7 +3,7 @@ var http = require('http').Server(app);
 var io = require('socket.io')(http);
 var path = require('path');
 
-const port = 8641;
+const port = process.env.PORT || 8641;
 
 const keyMapping = {};
 
@@ -19,6 +19,7 @@ io.on('connection', function(socket){
 	*/
 	socket.on('relaytelecom-call', (call) => {
 		socket.broadcast.emit('relaytelecom-call', call);
+		console.log("call", call);
 	});
 
 
@@ -27,6 +28,7 @@ io.on('connection', function(socket){
 	*/
 	socket.on('relaytelecom-reply', (reply) => {
 		socket.broadcast.emit('relaytelecom-reply', reply);
+		console.log("reply: " + reply);
 	});
 
 
@@ -34,7 +36,8 @@ io.on('connection', function(socket){
 	* reply : encrypted blob
 	*/
 	socket.on('relaytelecom-affirm', (affirm) => {
-		socket.broadcast.emit('relaytelecom-affirm', reply);
+		socket.broadcast.emit('relaytelecom-affirm', affirm);
+		console.log("affirm: " + affirm);
 	});
 
 });
