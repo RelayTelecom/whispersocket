@@ -42,6 +42,10 @@ io.on('connection', function(socket){
 
 });
 
+app.get('/', (req, res) => {
+	res.sendFile(path.join(__dirname, 'public/', 'index.html'));
+});
+
 http.listen(port, function(){
   console.log('listening on localhost:' + port);
 });
