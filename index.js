@@ -1,5 +1,8 @@
 var express = require('express');
 var app = express();
+
+app.use(require('cors'));
+
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 var path = require('path');
@@ -42,8 +45,6 @@ io.on('connection', function(socket){
 	});
 
 });
-
-app.use(express.static('public'));
 
 http.listen(port, function(){
   console.log('listening on localhost:' + port);
