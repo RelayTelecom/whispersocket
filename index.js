@@ -44,6 +44,16 @@ io.on('connection', function(socket){
 		console.log("affirm: " + affirm);
 	});
 
+
+
+	/**
+	* Relay Advertise ip address and port
+	*/
+	socket.on('relaytelecom-advertise', (advertisement) => {
+		socket.broadcast.emit('relaytelecom-advertise', advertisement);
+		console.log("advertise: " + advertisement);
+	});
+
 });
 
 http.listen(port, function(){
