@@ -49,8 +49,8 @@ io.on('connection', function(socket){
 	/**
 	* Relay Advertise ip address and port
 	*/
-	socket.on('relaytelecom-advertise', (advertisement) => {
-		socket.broadcast.emit('relaytelecom-advertise', advertisement);
+	socket.on('relaytelecom-advertise', () => {
+		socket.broadcast.emit('relaytelecom-advertise', socket.request.connection.remoteAddress);
 		console.log("advertise: " + advertisement);
 	});
 
