@@ -50,7 +50,7 @@ io.on('connection', function(socket){
 	* Relay Advertise ip address and port
 	*/
 	socket.on('relaytelecom-advertise', () => {
-		const addr = socket.request.connection.remoteAddress;
+		const addr = socket.request.connection.remoteAddress.replace('::ffff:', '');
 		socket.broadcast.emit('relaytelecom-advertise', addr);
 		console.log("advertise: " + addr);
 	});
