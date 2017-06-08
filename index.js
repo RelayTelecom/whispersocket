@@ -47,12 +47,18 @@ io.on('connection', function(socket){
 
 
 	/**
-	* Relay Advertise ip address and port
+	* Relay Advertise ip address
 	*/
 	socket.on('relaytelecom-advertise', () => {
 		const addr = socket.request.connection.remoteAddress.replace('::ffff:', '');
 		socket.broadcast.emit('relaytelecom-advertise', addr);
 		console.log("advertise: " + addr);
+	});
+
+	socket.on('disconnect', () => {
+		const addr = socket.request.connection.remoteAddress.replace('::ffff:', '');
+		socket.broadcast.emit('relaytelecom-retreat', addr);
+		console.log("retreat: " + addr);
 	});
 
 });
