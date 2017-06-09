@@ -50,7 +50,7 @@ io.on('connection', function(socket){
 	* Relay Advertise ip and port
 	*/
 	socket.on('relaytelecom-advertise', (advertisement) => {
-		if (advertisement.length > 0) {
+		if (advertisement && advertisement.length > 0) {
 			socket.broadcast.emit('relaytelecom-advertise', advertisement);
 			console.log("advertise: " + advertisement);
 		}
